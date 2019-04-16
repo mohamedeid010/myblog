@@ -1,0 +1,16 @@
+body{
+  direction: rtl;
+  text-align: right;
+}
+.sidebar {
+    text-align: right;
+    float: right;
+    padding-right: 0px;
+}
+.sidebar .nav-item .nav-link {
+    text-align: right;
+}
+.sidebar .nav-item .nav-link[data-toggle=collapse]::after {
+    float: left;
+    content: '\f053' !important;
+}
