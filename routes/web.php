@@ -17,7 +17,8 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin'],function(){
   Route::get('/main', function () {
       return view('admin.main');
-  });
+  })->name('main');
   Route::get('/posts','PostsController@index')->name('posts');
   Route::get('/posts/getdata','PostsController@getdata')->name('posts.getdata');
+  Route::get('/post/add','PostsController@create')->name('post.add');
 });

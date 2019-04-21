@@ -42,7 +42,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('main')}}">
           <span>الرئيسية</span>
           <i class="fas fa-fw fa-tachometer-alt"></i>
 
@@ -61,12 +61,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <span>المواضيع</span>
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-folder-open"></i>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{route('posts')}}">عرض المواضيع</a>
-            <a class="collapse-item" href="cards.html">اضافة موضوع</a>
+            <a class="collapse-item" href="{{route('post.add')}}">اضافة موضوع</a>
           </div>
         </div>
       </li>
