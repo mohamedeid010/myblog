@@ -33,6 +33,11 @@ $(document).ready( function () {
     "language": {
       "search": "ابحث : ",
       "sLengthMenu": "عرض _MENU_ سجلات",
+      "info": "عرض _START_ الي _END_ من _TOTAL_ نتيجة",
+      "paginate": {
+      "previous": "السابق",
+      "next":"التالي",
+    }
  },
       processing: true,
       serverSide: true,
