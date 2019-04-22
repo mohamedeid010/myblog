@@ -22,7 +22,19 @@ class PostsController extends Controller
     public function getdata()
     {
       $posts = Post::select('id','title');
-      return Datatables::of($posts)->make(true);
+      return Datatables::of($posts)->addIndexColumn()
+      ->addColumn('action', function($row){
+
+             $btn = '<a href="'.route("post.edit",["id"=>$row->id]).'" data-toggle="tooltip"
+             data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+
+             $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'"
+             data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+
+              return $btn;
+      })
+      ->rawColumns(['action'])
+      ->make(true);;
     }
     /**
      * Show the form for creating a new resource.

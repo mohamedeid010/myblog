@@ -21,4 +21,6 @@ Route::group(['prefix'=>'admin'],function(){
   Route::get('/posts','PostsController@index')->name('posts');
   Route::get('/posts/getdata','PostsController@getdata')->name('posts.getdata');
   Route::get('/post/add','PostsController@create')->name('post.add');
+  Route::get('/post/edit/{id}','PostsController@edit')->name('post.edit');
+  Route::get('/post/delete/{id}','PostsController@delete')->name('post.delete');
 });

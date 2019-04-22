@@ -14,3 +14,23 @@ body{
     float: left;
     content: '\f053' !important;
 }
+@media (min-width: 768px){
+  .ml-md-3, .mx-md-3 {
+      margin-right: 1rem !important;
+  }
+}
+.input-group-append {
+    margin-right: -1px;
+}
+.input-group>.custom-select:not(:last-child), .input-group>.form-control:not(:last-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.input-group>.input-group-append>.btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
