@@ -17,6 +17,7 @@
 <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="{{asset('admin')}}/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{{ asset('admin/css/toastr.min.css') }}" rel="stylesheet">
   <link href="{{asset('admin')}}/css/ar.css" rel="stylesheet">
 
 </head>
@@ -53,7 +54,7 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      
+
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -390,6 +391,16 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{asset('admin')}}/js/sb-admin-2.min.js"></script>
+  <script src="{{ asset('admin/js/toastr.min.js') }}"></script>
+  <script>
+      @if(Session::has('success'))
+        toastr.success('{{Session::get('success')}}');
+      @endif
+
+      @if(Session::has('warning'))
+        toastr.success('{{Session::get('warning')}}');
+      @endif
+  </script>
 
   <!-- Page level plugins -->
 

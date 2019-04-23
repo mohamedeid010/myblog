@@ -13,7 +13,7 @@
         {{csrf_field()}}
           <div class="form-group">
             <label for="exampleFormControlInput1">العنوان</label>
-            <input type="text" class="form-control" id="posttitle" placeholder="ادخل عنوان المقال" name="title">
+            <input type="text" class="form-control" id="posttitle" name="title" value="{{ $post->title}}">
             @if ($errors->has('title'))
               <div class="alert alert-danger">{{ $errors->first('title') }}</div>
             @endif
@@ -29,7 +29,7 @@
 
           <div class="form-group">
             <label for="content">المحتوي</label>
-            <textarea class="form-control" id="postcontent" rows="3" name="content"></textarea>
+            <textarea class="form-control" id="postcontent" rows="3" name="content">{{ $post->body}}</textarea>
             @if ($errors->has('content'))
               <div class="alert alert-danger">{{ $errors->first('content') }}</div>
             @endif
