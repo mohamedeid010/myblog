@@ -29,7 +29,7 @@ class PostsController extends Controller
              $btn = '<a href="'.route("post.edit",["id"=>$row->id]).'" data-toggle="tooltip"
              data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">تعديل</a>';
 
-             $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'"
+             $btn = $btn.' <a href="'.route("post.delete",["id"=>$row->id]).'" data-toggle="tooltip"  data-id="'.$row->id.'"
              data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">حذف</a>';
 
               return $btn;
@@ -67,6 +67,7 @@ class PostsController extends Controller
           "image.mimes" => " jpeg,png,jpg,gifيجب ان يكون اكتداد الصوره ",
           "content.required" => "يجب ادخال محتوى",
         ]);
+        //upload  image
         $image = $request->image;
         $new_image = time().$image->getClientOriginalName();
         $image->move('uploads/posts', $new_image);
@@ -111,7 +112,44 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         //validate form data
+         $posts = $this->validate($request,[
+            'title' => 'required', 
+            'content' => 'required',
+          ],[
+            "title.required" => "يرجى ادخال عنوان الموضوع",
+            "image.image" => "يرجي التاكد من الصوره المرفوعه",
+            "image.mimes" => " jpeg,png,jpg,gifيجب ان يكون اكتداد الصوره ",
+            "content.required" => "يجب ادخال محتوى",
+          ]);
+          $post = Post::find($id);
+          //check if upload image 
+          if($request->hasFile('image'))
+        {
+           //validate new image
+            $posts = $this->validate($request,[
+                'image' => 'image|mimes:jpeg,png,jpg,gif',
+            ],[
+                "image.image" => "يرجي التاكد من الصوره المرفوعه",
+                "image.mimes" => " jpeg,png,jpg,gifيجب ان يكون اكتداد الصوره ",
+              ]);
+
+            // remove old picture from the server
+            $filename = public_path().'/uploads/posts/'.$post->image;
+              \File::delete($filename);
+
+            //upload new image    
+            $image = $request->image;
+            $image_new_name= time().$image->getClientOriginalName();
+            $image->move('uploads/posts/',$image_new_name);
+
+            $post->image = $image_new_name;
+        }
+        $post->title = $request->title;
+        $post->body = $request->content;
+        $post->save();
+        Session::flash('success','تم تعديل الموضوع بنجاح');
+        return redirect()->route('posts');
     }
 
     /**

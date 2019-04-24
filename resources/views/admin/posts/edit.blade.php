@@ -9,7 +9,7 @@
     <h6 class="m-0 font-weight-bold text-primary">اضافة موضوع</h6>
   </div>
   <div class="card-body">
-      <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
+      <form method="post" action="{{route('post.update',['id'=>$post->id])}}" enctype="multipart/form-data">
         {{csrf_field()}}
           <div class="form-group">
             <label for="exampleFormControlInput1">العنوان</label>
